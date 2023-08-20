@@ -1,14 +1,13 @@
 <?php include_once('config.php'); ?>
 
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
+
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <title> Document </title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -18,7 +17,6 @@
 <body>
     <?php include_once('nav.php') ?>
     <section class="home-section">
-        
         <br>
 
         <div class="row">
@@ -37,25 +35,24 @@
                     $password = md5($_POST['pass']);
 
 
-                
-                        $sql = "INSERT INTO admin (Admin_ID,Full_Name,Profile,E_mail,D_Code,Gender,Ph_No,user,Password)
-                        VALUES('$admin','$fname','$profile','$email','$dname','$gender',$ph,'$username','$password')";
-                        $sql_run = mysqli_query($con, $sql);
 
-                        if ($sql_run) {
-                            move_uploaded_file($_FILES["profile_images"]["tmp_name"], "upload/" . $_FILES["profile_images"]["name"]);
+                    $sql = "INSERT INTO admin (Admin_ID,Full_Name,Profile,E_mail,Department_Name,Gender,Ph_No,username,Password)
+                        VALUES('$admin','$fname','$profile','$email','$dname','$gender',$ph,'$username','$password')";
+                    $sql_run = mysqli_query($con, $sql);
+
+                    if ($sql_run) {
+                        move_uploaded_file($_FILES["profile_images"]["tmp_name"], "upload/" . $_FILES["profile_images"]["name"]);
                 ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                Insert Success
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Insert Success
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                 <?php
-                        } else {
-                            echo "error:" . mysqli_errno($con);
-                        }
-                    
+                    } else {
+                        echo "error:" . mysqli_errno($con);
+                    }
                 }
 
 
@@ -85,38 +82,33 @@
 
 
                 <?php
-                if (isset($_POST['updatebtn'])) {
+                if (isset($_POST['SaveChanges'])) {
                     $admin = $_POST['a_id'];
                     $fname = $_POST['fname'];
-                    $profile = $_FILES['profile_images']['name'];
                     $email = $_POST['email'];
                     $dname = $_POST['d_name'];
                     $gender = $_POST['gender'];
                     $ph = $_POST['ph_no'];
                     $username = $_POST['user'];
-                    $password = md5($_POST['pass']);
+                    $sql = "UPDATE `admin` SET `Full_Name`='$fname',`E_mail`='$email',`Department_Name`='$dname',`Gender`='$gender',`Ph_No`='$ph',
+                        `username`='$username' WHERE Admin_ID='$admin'";
+                    $sql_run = mysqli_query($con, $sql);
 
+                    if ($sql_run) {
 
-                
-                        $sql = "UPDATE `admin` SET `Full_Name`='$fname',`E_mail`='$email',`D_Code`='$dname',`Gender`='$gender',`Ph_No`='$ph',
-                        `user`='$username',`Password`='$password' WHERE Admin_ID='$admin'";
-                        $sql_run = mysqli_query($con, $sql);
-
-                        if ($sql_run) {
-                            move_uploaded_file($_FILES["profile_images"]["tmp_name"], "upload/" . $_FILES["profile_images"]["name"]);
                 ?>
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                Updated Successfully
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Updated Successfully
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                 <?php
-                        } else {
-                            echo "error:" . mysqli_error($con);
-                        }
+                    } else {
+                        echo "error:" . mysqli_error($con);
                     }
-                
+                }
+
                 ?>
 
 

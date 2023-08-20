@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
     echo "---" . $r['Password'];
     if ($pass == $r['Password']) {
       $_SESSION['user'] = $user;
-      header("location: admin_dashboard.php");
+      header("location: dashboard.php");
     } else {
       echo "error" . mysqli_error($con);
 ?>

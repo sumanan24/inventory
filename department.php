@@ -16,67 +16,9 @@
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="logo-details">
-            <i class='bx bxl-c-plus-plus icon'></i>
-            <div class="logo_name">SLGTI</div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav-list">
-            <li>
-                <i class='bx bx-search'></i>
-                <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li>
-            <li>
-                <a href="admin_dashboard.php">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Dashboard</span>
-                </a>
-                <span class="tooltip">Dashboard</span>
-            </li>
-            <li>
-                <a href="all_dept.php">
-                    <i class='bx bx-user'></i>
-                    <span class="links_name">Inventory</span>
-                </a>
-                <span class="tooltip">Inventory</span>
-            </li>
-            <li>
-                <a href="department.php">
-                    <i class='bx bx-chat'></i>
-                    <span class="links_name">Department</span>
-                </a>
-                <span class="tooltip">Department</span>
-            </li>
-            <li>
-                <a href="admin_table.php">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="links_name">Admin</span>
-                </a>
-                <span class="tooltip">Admin</span>
-            </li>
-            <li>
-                <a href="staff_table.php">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="links_name">Staff</span>
-                </a>
-                <span class="tooltip">Staff</span>
-            </li>
-            <li class="profile">
-                <div class="profile-details">
-                    <img src="profile.jpg" alt="profileImg">
-                    <div class="name_job">
-                        <div class="name">Inushika</div>
-                        <div class="job">Web designer</div>
-                    </div>
-                </div>
-                <i class='bx bx-log-out' id="log_out"></i>
-            </li>
-        </ul>
-    </div>
+    <?php include_once('nav.php') ?>
     <section class="home-section">
-        <?php include_once('navg.php'); ?>
+        
         <br>
         <div class="row">
             <div class=col-sm-1></div>
@@ -101,7 +43,7 @@
                 ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 Insert Success
-                                <meta http-equiv="refresh" content = "3" />
+                                <meta http-equiv="refresh" content = "2" />
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -128,6 +70,7 @@
                         ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             Update Success
+                            <meta http-equiv="refresh" content = "2" />
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -158,6 +101,7 @@
                     ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             Delete Success
+                            
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -167,6 +111,7 @@
                     ?>
                         <div class="alert alert-info alert-dismissible fade show" role="alert">
                             This department not delete !.
+                            <meta http-equiv="refresh" content = "2" />
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -181,7 +126,7 @@
                         <form action="" method="POST">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    Department Code <br><input type="text" name="dcode" class="form-control" style="background-color: #E4E9F7; border:1px solid black;" value="<?php echo $d_code; ?>" required> <br>
+                                    Department Code <br><input type="text" name="dcode" class="form-control" style="background-color: #E4E9F7; border:1px solid black;" value="<?php echo $d_code; ?>"  required> <br>
                                 </div>
                                 <div class="col-sm-6">
                                     Department Name <input type="text" name="dname" class="form-control" style="background-color: #E4E9F7; border:1px solid black;" value="<?php echo $d_name; ?>" required> <br>
