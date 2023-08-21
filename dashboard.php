@@ -1,13 +1,11 @@
 <?php include_once('config.php'); ?>
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <title> Document</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/card.css">
@@ -18,14 +16,23 @@
     <?php include_once('nav.php'); ?>
     <section class="home-section">
 
-        
+
         <br>
-        <h3>Dashboard</h3>
+        <h3> &nbsp; &nbsp;Dashboard</h3>
         <br>
         <div class="cardBox">
             <div class="card">
                 <div>
-                    <div class="numbers">1,504</div>
+                    <div class="numbers">
+                        <?php
+                        $sql = "SELECT count('Inventory_ID') as total FROM inventory";
+                        $result = mysqli_query($con, $sql);
+                        if (mysqli_num_rows($result) == 1) {
+                            $r = mysqli_fetch_assoc($result);
+                            echo $r['total'];
+                        }
+                        ?>
+                    </div>
                     <div class="cardName">Inventory</div>
                 </div>
 
@@ -35,22 +42,23 @@
             </div>
             <div class="card">
                 <div>
-                    <div class="numbers">6</div>
+                    <div class="numbers">
+                        <?php
+                        $sql = "SELECT count('Department_Code') as total FROM Department";
+                        $result = mysqli_query($con, $sql);
+                        if (mysqli_num_rows($result) == 1) {
+                            $r = mysqli_fetch_assoc($result);
+                            echo $r['total'];
+                        }
+                        ?>
+                    </div>
                     <div class="cardName">Department</div>
                 </div>
                 <div class="iconBx">
                     <ion-icon name="cart-outline"></ion-icon>
                 </div>
             </div>
-            <div class="card">
-                <div>
-                    <div class="numbers">6</div>
-                    <div class="cardName">HOD</div>
-                </div>
-                <div class="iconBx">
-                    <ion-icon name="chatbubbles-outline"></ion-icon>
-                </div>
-            </div>
+
 
             <div class="card">
                 <div>

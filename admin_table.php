@@ -82,7 +82,7 @@
 
 
                 <?php
-                if (isset($_POST['SaveChanges'])) {
+                if (isset($_POST['updatebtn'])) {
                     $admin = $_POST['a_id'];
                     $fname = $_POST['fname'];
                     $email = $_POST['email'];

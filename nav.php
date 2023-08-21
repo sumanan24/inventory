@@ -18,7 +18,7 @@
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="all_dept.php">
+                <a href="all_department.php">
                     <i class='bx bx-coin-stack'></i>
                     <span class="links_name">Inventory</span>
                 </a>

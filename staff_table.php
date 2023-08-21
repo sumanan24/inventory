@@ -1,14 +1,12 @@
 <?php include_once('config.php'); ?>
 
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <title> Department </title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -16,67 +14,9 @@
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="logo-details">
-            <i class='bx bxl-c-plus-plus icon'></i>
-            <div class="logo_name">SLGTI</div>
-            <i class='bx bx-menu' id="btn"></i>
-        </div>
-        <ul class="nav-list">
-            <li>
-                <i class='bx bx-search'></i>
-                <input type="text" placeholder="Search...">
-                <span class="tooltip">Search</span>
-            </li>
-            <li>
-                <a href="admin_dashboard.php">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="links_name">Dashboard</span>
-                </a>
-                <span class="tooltip">Dashboard</span>
-            </li>
-            <li>
-                <a href="all_dept.php">
-                    <i class='bx bx-user'></i>
-                    <span class="links_name">Inventory</span>
-                </a>
-                <span class="tooltip">Inventory</span>
-            </li>
-            <li>
-                <a href="department.php">
-                    <i class='bx bx-chat'></i>
-                    <span class="links_name">Department</span>
-                </a>
-                <span class="tooltip">Department</span>
-            </li>
-            <li>
-                <a href="admin_table.php">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="links_name">Admin</span>
-                </a>
-                <span class="tooltip">Admin</span>
-            </li>
-            <li>
-                <a href="staff_table.php">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="links_name">Staff</span>
-                </a>
-                <span class="tooltip">Staff</span>
-            </li>
-            <li class="profile">
-                <div class="profile-details">
-                    <img src="profile.jpg" alt="profileImg">
-                    <div class="name_job">
-                        <div class="name">Inushika</div>
-                        <div class="job">Web designer</div>
-                    </div>
-                </div>
-                <i class='bx bx-log-out' id="log_out"></i>
-            </li>
-        </ul>
-    </div>
+    <?php include_once('nav.php'); ?>
     <section class="home-section">
-        <?php include_once('navg.php'); ?>
+
         <br>
 
         <div class="row">
@@ -96,17 +36,16 @@
                     $password = md5($_POST['pass']);
 
 
-                        $sql = "INSERT INTO staff(Staff_ID,Full_Name,Profile,E_mail,D_Code,Gender,Ph_No,Username,Password)
+                    $sql = "INSERT INTO staff(Staff_ID,Full_Name,Profile,E_mail,D_Code,Gender,Ph_No,Username,Password)
                         VALUES('$admin','$fname','$profile','$email','$dname','$gender',$ph,'$username','$password')";
-                        $sql_run = mysqli_query($con, $sql);
+                    $sql_run = mysqli_query($con, $sql);
 
-                        if ($sql_run) {
-                            move_uploaded_file($_FILES["profile_images"]["tmp_name"], "upload/" . $_FILES["profile_images"]["name"]);
-                            echo "Added Successfully";
-                        } else {
-                            echo "error:" . mysqli_error($con);
-                        }
-                    
+                    if ($sql_run) {
+                        move_uploaded_file($_FILES["profile_images"]["tmp_name"], "upload/" . $_FILES["profile_images"]["name"]);
+                        echo "Added Successfully";
+                    } else {
+                        echo "error:" . mysqli_error($con);
+                    }
                 }
                 ?>
 
@@ -188,7 +127,7 @@
                                             <td><?php echo $row['Gender']; ?></td>
                                             <td>
 
-                                            <form action="edit_staff.php" method="POST">
+                                                <form action="edit_staff.php" method="POST">
                                                     <input type="hidden" name="edit_id" value="<?php echo $row['ID'] ?>">
                                                     <button type="submit" name="edit" class="btn btn-sm btn-outline-success editbtn">Edit</button>
                                                     <a href="?delete=<?php echo $row['ID'] ?>" class="btn btn-sm btn-outline-danger">Delete</a>
