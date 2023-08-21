@@ -1,3 +1,12 @@
+<?php
+session_start();
+?>
+<?php 
+if (isset($_GET['logout'])) {
+    unset($_SESSION['username']);  
+    header('Location: index.php');         
+}
+?>
 <div class="sidebar">
         <div class="logo-details">
             <i class='bx bxl-c-plus-plus icon'></i>
@@ -51,11 +60,11 @@
 
                
                     <div class="name_job">
-                        <div class="name">Inushika</div>
-                        <div class="job">Web designer</div>
+                        <div class="name"><?php echo $_SESSION['user']; ?></div>
+                        <a class="text-light" href="?logout"><i class='bx bx-log-out' id="log_out"></i></a>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id="log_out"></i>
+                
             </li>
         </ul>
     </div>

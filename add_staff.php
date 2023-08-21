@@ -57,7 +57,7 @@
                             Department Name <br>
 
                             <?php
-                            $con = mysqli_connect('localhost', 'root', '', 'inventory_db');
+                            
                             $result = mysqli_query($con, "SELECT * FROM department");
                             ?>
                             <select name="d_name" id="d_name" width="100%" class="form-control" style="background-color: #E4E9F7; border:1px solid black;">

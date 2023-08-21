@@ -1,7 +1,12 @@
 <?php include_once('config.php'); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+?>
 <head>
     <meta charset="UTF-8">
     <title> Document </title>

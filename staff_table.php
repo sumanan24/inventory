@@ -36,7 +36,7 @@
                     $password = md5($_POST['pass']);
 
 
-                    $sql = "INSERT INTO staff(Staff_ID,Full_Name,Profile,E_mail,D_Code,Gender,Ph_No,Username,Password)
+                    $sql = "INSERT INTO staff(Staff_ID,Full_Name,Profile,E_mail,Department_Name,Gender,Ph_No,Username,Password)
                         VALUES('$admin','$fname','$profile','$email','$dname','$gender',$ph,'$username','$password')";
                     $sql_run = mysqli_query($con, $sql);
 
@@ -56,7 +56,7 @@
                     $fname = $_POST['fname'];
                     $profile = $_FILES['profile_images']['name'];
                     $email = $_POST['email'];
-                    $dname = $_POST['d_name'];
+                    $dname = $_POST['Department_Name'];
                     $gender = $_POST['gender'];
                     $ph = $_POST['ph_no'];
                     $username = $_POST['user'];
@@ -64,7 +64,7 @@
 
 
 
-                    $sql = "UPDATE `staff` SET `Full_Name`='$fname',`E_mail`='$email',`D_Code`='$dname',`Gender`='$gender',`Ph_No`='$ph',
+                    $sql = "UPDATE `staff` SET `Full_Name`='$fname',`E_mail`='$email',`Department_Name`='$dname',`Gender`='$gender',`Ph_No`='$ph',
                         `user`='$username',`Password`='$password' WHERE Staff_ID='$admin'";
                     $sql_run = mysqli_query($con, $sql);
 
@@ -123,7 +123,7 @@
                                             <td><?php echo $row['Full_Name']; ?></td>
 
                                             <td><?php echo $row['E_mail']; ?></td>
-                                            <td><?php echo $row['D_Code']; ?></td>
+                                            <td><?php echo $row['Department_Name']; ?></td>
                                             <td><?php echo $row['Gender']; ?></td>
                                             <td>
 
