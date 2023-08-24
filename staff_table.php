@@ -1,4 +1,6 @@
-<?php include_once('config.php'); ?>
+<?php include_once('config.php');
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -54,33 +56,23 @@
                 if (isset($_POST['updatebtn'])) {
                     $admin = $_POST['s_id'];
                     $fname = $_POST['fname'];
-                    $profile = $_FILES['profile_images']['name'];
                     $email = $_POST['email'];
-                    $dname = $_POST['Department_Name'];
+                    $dname = $_POST['d_name'];
                     $gender = $_POST['gender'];
                     $ph = $_POST['ph_no'];
                     $username = $_POST['user'];
-                    $password = md5($_POST['pass']);
-
-
 
                     $sql = "UPDATE `staff` SET `Full_Name`='$fname',`E_mail`='$email',`Department_Name`='$dname',`Gender`='$gender',`Ph_No`='$ph',
-                        `user`='$username',`Password`='$password' WHERE Staff_ID='$admin'";
+                        `username`='$username' WHERE Staff_ID='$admin'";
                     $sql_run = mysqli_query($con, $sql);
-
-                    if ($sql_run) {
-                        move_uploaded_file($_FILES["profile_images"]["tmp_name"], "upload/" . $_FILES["profile_images"]["name"]);
                 ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Updated Successfully
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Update Success
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 <?php
-                    } else {
-                        echo "error:" . mysqli_error($con);
-                    }
                 }
 
                 ?>

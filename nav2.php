@@ -18,45 +18,25 @@ if (isset($_GET['logout'])) {
                 <span class="tooltip">Search</span>
             </li>
             <li>
-                <a href="admindashboard.php">
+                <a href="staffdashboard.php">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="all_department.php">
+                <a href="inventory_add.php">
                     <i class='bx bx-coin-stack'></i>
                     <span class="links_name">Inventory</span>
                 </a>
                 <span class="tooltip">Inventory</span>
             </li>
-            <li>
-                <a href="department.php">
-                    <i class='bx bx-building-house'></i>
-                    <span class="links_name">Department</span>
-                </a>
-                <span class="tooltip">Department</span>
-            </li>
-            <li>
-                <a href="admin_table.php">
-                    <i class='bx bx-user-circle'></i>
-                    <span class="links_name">Admin</span>
-                </a>
-                <span class="tooltip">Admin</span>
-            </li>
-            <li>
-                <a href="staff_table.php">
-                    <i class='bx bx-user-circle'></i>
-                    <span class="links_name">Staff</span>
-                </a>
-                <span class="tooltip">Staff</span>
-            </li>
+            
+            
             <li class="profile">
                 <div class="profile-details">
                 <i class='bx bx-profile-light'></i>
 
-               
                     <div class="name_job">
                         <div class="name"><?php echo $_SESSION['user']; ?></div>
                         <a class="text-light" href="?logout"><i class='bx bx-log-out' id="log_out"></i></a>

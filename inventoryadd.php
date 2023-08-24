@@ -2,9 +2,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: index.php');
-}
 ?>
 <html lang="en" dir="ltr">
 
@@ -18,7 +15,7 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body>
-    <?php include_once('nav.php'); ?>
+    <?php include_once('nav2.php'); ?>
     <section class="home-section">
         <br>
         <div class="container">
@@ -37,8 +34,6 @@ if (!isset($_SESSION['username'])) {
                         Description <input type="text" name="desc" class="form-control" style="background-color: #E4E9F7; border:1px solid black;" required><br>
                         Quantity <input type="text" name="quantity" class="form-control" style="background-color: #E4E9F7; border:1px solid black;" required><br>
                         Date <input type="date" name="date" class="form-control" style="background-color: #E4E9F7; border:1px solid black;" required> <br>
-
-
                     </div>
                 </div>
                 <div class="row">

@@ -2,9 +2,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: index.php');
-}
 ?>
 <html lang="en" dir="ltr">
 
@@ -18,7 +15,7 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body>
-    <?php include_once('nav.php'); ?>
+    <?php include_once('nav2.php'); ?>
     <section class="home-section">
 
         <br>
@@ -32,13 +29,13 @@ if (!isset($_SESSION['username'])) {
                 //insert
                 if (isset($_POST['save'])) {
                     $transfer = $_POST['transfer_id'];
-                    $staff = $_POST['staff'];
+                    $staff = $_SESSION['user'];;
                     $inventory = $_POST['inventory'];
                     $sender = $_POST['sender'];
                     $receiver = $_POST['receiver'];
                     $date = $_POST['date'];
                     $quantity = $_POST['quantity'];
-                    $sql = "INSERT INTO transfer(Transfer_ID,Staff_ID,Inventory_ID,Sender_D_Code,Receiver_D_Code,Quantity,Date) 
+                    $sql = "INSERT INTO transfer(Transfer_ID,Staff_Name,Inventory_Name,Sender_D_Code,Receiver_D_Code,Quantity,Date) 
                     VALUES('$transfer','$staff','$inventory','$sender','$receiver','$quantity','$date')";
 
                     if (mysqli_query($con, $sql)) {
@@ -78,7 +75,7 @@ if (!isset($_SESSION['username'])) {
 
 
                 <div class="card-header">Inventory
-                    <a class="btn btn-dark" href="i_transfer.php" role="button">+ADD</a>
+                    <a class="btn btn-dark" href="inven_transfer.php" role="button">+ADD</a>
                 </div>
                 <br>
                 <div class="card" style="background-color: #bcc0cc;">
@@ -103,7 +100,6 @@ if (!isset($_SESSION['username'])) {
                                             <th scope="col">Receiver D_Code</th>
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Date</th>
-                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -114,8 +110,8 @@ if (!isset($_SESSION['username'])) {
                                         ?>
                                             <tr>
                                                 <td><?php echo $row['Transfer_ID']; ?></td>
-                                                <td><?php echo $row['Staff_ID']; ?></td>
-                                                <td><?php echo $row['Inventory_ID']; ?></td>
+                                                <td><?php echo $row['Staff_Name']; ?></td>
+                                                <td><?php echo $row['Inventory_Name']; ?></td>
                                                 <td><?php echo $row['Sender_D_Code']; ?></td>
                                                 <td><?php echo $row['Receiver_D_Code']; ?></td>
                                                 <td><?php echo $row['Quantity']; ?></td>
@@ -123,8 +119,8 @@ if (!isset($_SESSION['username'])) {
                                                 <td>
                                                     <form action="edit_i_transfer.php" method="POST">
                                                         <input type="hidden" name="edit_id" value="<?php echo $row['ID'] ?>">
-                                                        <button type="submit" name="edit" class="btn btn-sm btn-outline-success editbtn">Edit</button>
-                                                        <a href="?delete='<?php echo $row['ID'] ?>'" class="btn btn-sm btn-outline-danger remove">Delete</a>
+                                                        <!-- <button type="submit" name="edit" class="btn btn-sm btn-outline-success editbtn">Edit</button>
+                                                        <a href="?delete='<?php // echo $row['ID'] ?>'" class="btn btn-sm btn-outline-danger remove">Delete</a> -->
                                                     </form>
                                                     <br>
 

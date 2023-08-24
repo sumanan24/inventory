@@ -2,9 +2,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: index.php');
-}
 ?>
 <html lang="en" dir="ltr">
 
@@ -41,8 +38,7 @@ if (!isset($_SESSION['username'])) {
 
                             <input type="hidden" name="edit_id" value="<?php echo $row['ID'] ?>">
                                 Inventory_ID <input type="text" name="in_id" class="form-control" style="background-color: #E4E9F7; border:1px solid black;" value="<?php echo $row['Inventory_ID'] ?>" required><br>
-                                Upload Image <br>
-                                <input type="file" name="inventory_images" class="form-control" id="inventory_images" style="background-color: #E4E9F7; border:1px solid black;" value="<?php echo $row['Image'] ?>" required> <br>
+                                
                                 Name <input type="text" name="in_name" class="form-control" style="background-color: #E4E9F7; border:1px solid black;" value="<?php echo $row['Name'] ?>" required><br>
                             </div>
                             <div class="col-sm-6">

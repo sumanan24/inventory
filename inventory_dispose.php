@@ -2,9 +2,6 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: index.php');
-}
 ?>
 <html lang="en" dir="ltr">
 
@@ -18,7 +15,7 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body>
-    <?php include_once('nav.php'); ?>
+    <?php include_once('nav2.php'); ?>
     <section class="home-section">
        
         <br>

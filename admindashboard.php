@@ -1,5 +1,4 @@
-<?php include_once('config.php'); ?>
-<?php
+<?php include_once('config.php');
 session_start();
 ?>
 <!DOCTYPE html>
@@ -7,11 +6,11 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <title> Department </title>
+    <title> Document</title>
     <link rel="stylesheet" href="css/style.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/card.css">
     <?php include_once('script.php'); ?>
 </head>
 
@@ -19,13 +18,65 @@ session_start();
     <?php include_once('nav.php'); ?>
     <section class="home-section">
 
+
         <br>
+        <h3> &nbsp; &nbsp;Admin Dashboard</h3>
+        <br>
+        <div class="cardBox">
+            <div class="card">
+                <div>
+                    <div class="numbers">
+                        <?php
+                        $sql = "SELECT count('Inventory_ID') as total FROM inventory";
+                        $result = mysqli_query($con, $sql);
+                        if (mysqli_num_rows($result) == 1) {
+                            $r = mysqli_fetch_assoc($result);
+                            echo $r['total'];
+                        }
+                        ?>
+                    </div>
+                    <div class="cardName">Inventory</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="eye-outline"></ion-icon>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">
+                        <?php
+                        $sql = "SELECT count('Department_Code') as total FROM Department";
+                        $result = mysqli_query($con, $sql);
+                        if (mysqli_num_rows($result) == 1) {
+                            $r = mysqli_fetch_assoc($result);
+                            echo $r['total'];
+                        }
+                        ?>
+                    </div>
+                    <div class="cardName">Department</div>
+                </div>
+                <div class="iconBx">
+                    <ion-icon name="cart-outline"></ion-icon>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div>
+                    <div class="numbers">4</div>
+                    <div class="cardName">Staff</div>
+                </div>
+
+                <div class="iconBx">
+                    <ion-icon name="cash-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
         <br>
 
         <div class="container">
-            <div class="card-header"> Inventory</div>
-            <br>
-            <div class="card" style="background-color: #bcc0cc;">
+            <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
                         <?php
@@ -74,8 +125,9 @@ session_start();
                         }
                         ?>
                     </div>
-
-
+                </div>
+            </div>
+        </div>
 
     </section>
 

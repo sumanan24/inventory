@@ -1,4 +1,6 @@
-<?php include_once('config.php'); ?>
+<?php include_once('config.php');
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -13,12 +15,12 @@
 </head>
 
 <body>
-    <?php include_once('nav.php'); ?>
+    <?php include_once('nav2.php'); ?>
     <section class="home-section">
 
 
         <br>
-        <h3> &nbsp; &nbsp;Dashboard</h3>
+        <h3> &nbsp; &nbsp;Staff Dashboard</h3>
         <br>
         <div class="cardBox">
             <div class="card">
@@ -78,7 +80,12 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <?php
-                        $query = "SELECT * FROM inventory";
+                        $user=$_SESSION['user'];
+                        $query1 = "SELECT * FROM staff where Username='$user'";
+                        $query_run1 = mysqli_query($con, $query1);
+                        $r = mysqli_fetch_assoc($query_run1);
+                        $dcode= $r['Department_Name'];
+                        $query = "SELECT * FROM inventory where dcode='$dcode'";
                         $query_run = mysqli_query($con, $query);
                         if (mysqli_num_rows($query_run) > 0) {
                         ?>

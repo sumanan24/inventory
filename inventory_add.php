@@ -3,10 +3,8 @@
 <html lang="en" dir="ltr">
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: index.php');
-}
 ?>
+
 <head>
     <meta charset="UTF-8">
     <title> Document </title>
@@ -17,9 +15,9 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body>
-    <?php include_once('nav.php') ?>
+    <?php include_once('nav2.php') ?>
     <section class="home-section">
-        
+
         <br>
         <div class="row">
             <div class=col-sm-1></div>
@@ -29,18 +27,23 @@ if (!isset($_SESSION['username'])) {
 
                 <?php
                 if (isset($_POST['save'])) {
+                    $user = $_SESSION['user'];
+                    $query1 = "SELECT * FROM staff where Username='$user'";
+                    $query_run1 = mysqli_query($con, $query1);
+                    $r = mysqli_fetch_assoc($query_run1);
+                    $dcode = $r['Department_Name'];
                     $in_id = $_POST['in_id'];
                     $images = $_FILES["inventory_images"]['name'];
                     $in_name = $_POST['in_name'];
                     $description = $_POST['desc'];
                     $quantity = $_POST['quantity'];
                     $date = $_POST['date'];
-
+                    
 
                     if (file_exists("upload/" . $_FILES["inventory_images"]['name'])) {
                         $store = $_FILES["inventory_images"]['name'];
                     } else {
-                        $sql = "INSERT INTO inventory(Inventory_ID,Image,Name,Description,Quantity,Date) VALUES('$in_id','$images','$in_name','$description','$quantity','$date')";
+                        $sql = "INSERT INTO inventory(Inventory_ID,Image,Name,Description,Quantity,Date,dcode) VALUES('$in_id','$images','$in_name','$description','$quantity','$date','$dcode')";
                         $sql_run = mysqli_query($con, $sql);
 
                         if ($sql_run) {
@@ -62,28 +65,22 @@ if (!isset($_SESSION['username'])) {
                 <?php
                 if (isset($_POST['updatebtn'])) {
                     $id = $_POST['edit_id'];
-                    $images = $_FILES['inventory_images']['name'];
+
                     $in_name = $_POST['in_name'];
                     $description = $_POST['desc'];
                     $quantity = $_POST['quantity'];
                     $date = $_POST['date'];
 
-                    $sql = "UPDATE inventory SET Image='$images',Name='$in_name',Description='$description',Quantity='$quantity',Date='$date' WHERE ID='$id'";
+                    $sql = "UPDATE inventory SET Name='$in_name',Description='$description',Quantity='$quantity',Date='$date' WHERE ID='$id'";
                     $sql_run = mysqli_query($con, $sql);
-
-                    if ($sql_run) {
-                        move_uploaded_file($_FILES["inventory_images"]["tmp_name"], "upload/" . $_FILES["inventory_images"]["name"]);
                 ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Updated Successfully
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Updated Successfully
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 <?php
-                    } else {
-                        echo "Inventory Data Not Updated";
-                    }
                 }
                 ?>
 
@@ -102,21 +99,27 @@ if (!isset($_SESSION['username'])) {
                         </div>
                 <?php
                     } else {
-                        echo "error: ". mysqli_error($con);
+                        echo "error: " . mysqli_error($con);
                     }
                 }
                 ?>
 
-                <div class="card-header">Inventory
-                    <a class="btn btn-dark" href="inventoryadd.php" role="button">+ADD</a>
-                </div>
-                <br>
+                <div class="card-header">Inventory</div> <br>
+                <a class="btn btn-dark" href="inventoryadd.php" role="button">Add</a>
+                <a class="btn btn-dark" href="inventory_transfer.php" role="button">Transfer</a>
+                
+                <br><br>
                 <div class="card" style="background-color: #bcc0cc;">
                     <div class="card-body">
                         <div class="card-body">
                             <div class="table-responsive">
                                 <?php
-                                $query = "SELECT * FROM inventory";
+                                $user = $_SESSION['user'];
+                                $query1 = "SELECT * FROM staff where Username='$user'";
+                                $query_run1 = mysqli_query($con, $query1);
+                                $r = mysqli_fetch_assoc($query_run1);
+                                $dcode = $r['Department_Name'];
+                                $query = "SELECT * FROM inventory where dcode='$dcode'";
                                 $query_run = mysqli_query($con, $query);
                                 if (mysqli_num_rows($query_run) > 0) {
                                 ?>
@@ -152,10 +155,10 @@ if (!isset($_SESSION['username'])) {
                                                         <form action="edit_i_add.php" method="POST">
                                                             <input type="hidden" name="edit_id" value="<?php echo $row['ID'] ?>">
                                                             <button type="submit" name="edit" class="btn btn-sm btn-outline-success editbtn">Edit</button>
-                                                           <a href="?delete='<?php echo $row['ID'] ?>'" class="btn btn-sm btn-outline-danger remove">Delete</a>
-                                                            
+                                                            <a href="?delete='<?php echo $row['ID'] ?>'" class="btn btn-sm btn-outline-danger remove">Dispose</a>
+
                                                         </form>
-                                                        
+
                                                     </td>
                                                 </tr>
                                             <?php
